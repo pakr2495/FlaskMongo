@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang = "en">
+   <head></head>
+   <body>
+      <h3>
+         <a href = "{{ url_for('index') }}">Flask-Mongo example</a>
+      </h3>
+      
+      <hr/>
+      {%- for category, message in get_flashed_messages(with_categories = true) %}
+         <div class = "alert alert-danger">
+            {{ message }}
+         </div>
+      {%- endfor %}
+		
+      <h3>Tasks (<a href = "{{ url_for('new') }}">Add Tasks
+         </a>)</h3>
+      
+      <table>
+         <thead>
+            <tr>
+               <th>ID</th>
+               <th>Task Name</th>
+               <th>Task Description</th>
+               <th>Task Status</th>
+               <th>Task Duedate</th>
+            </tr>
+         </thead>
+
+         <tbody>
+            {% for data in datas %}
+               <tr>
+                  <td>{{ data.Id }}</td>
+                  <td>{{ data.Task_Name }}</td>
+                  <td>{{ data.Task_Descrition }}</td>
+                  <td>{{ data.Task_Status }}</td>
+                  <td>{{ data.Task_Duedate }}</td>
+                  <td><button><a href = "/delete/{{ data.Id }}">Delete</a></button></td>
+               </tr>
+            {% endfor %}
+         </tbody>
+      </table>
+   </body>
+</html>
